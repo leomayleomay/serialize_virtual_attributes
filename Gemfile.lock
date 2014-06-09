@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    serialize_virtual_attributes (0.0.1)
+    serialize_virtual_attributes (0.0.2)
       activerecord (~> 3.1)
       activesupport (~> 3.1)
 
