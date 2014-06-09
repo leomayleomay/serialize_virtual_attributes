@@ -79,5 +79,20 @@ describe SerializeVirtualAttributes do
       expect(person.first_name).to eq "hao"
       expect(person.last_name).to eq "liu"
     end
+
+    it "updates the virtual attributes" do
+      class Person < ActiveRecord::Base
+        serialize :fullname, Hash
+        serialize_virtual_attrs :first_name, :last_name, to: :fullname
+      end
+
+      person = Person.create(first_name: "hao", last_name: "liu")
+      person.update_attributes(first_name: "john", last_name: "doe")
+      person.reload
+
+      expect(person.first_name).to eq "john"
+      expect(person.last_name).to eq "doe"
+      expect(person.fullname).to eq ({first_name: "john", last_name: "doe"})
+    end
   end
 end
