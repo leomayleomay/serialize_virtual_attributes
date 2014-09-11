@@ -46,15 +46,6 @@ describe SerializeVirtualAttributes do
       )
     end
 
-    it "appends the virtual attributes to the attr_accessible" do
-      class Person < ActiveRecord::Base
-        serialize_virtual_attrs :first_name, :last_name, to: :fullname
-      end
-
-      expect(Person.accessible_attributes).to include(:first_name)
-      expect(Person.accessible_attributes).to include(:last_name)
-    end
-
     it "saves the virtual attributes in the serialized column" do
       class Person < ActiveRecord::Base
         serialize :fullname, Hash

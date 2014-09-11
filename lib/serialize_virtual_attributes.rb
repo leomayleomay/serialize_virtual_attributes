@@ -27,10 +27,6 @@ module SerializeVirtualAttributes
           raise ArgumentError.new("`#{attr}` is not supposed to be a virtual attribute")
         end
 
-        if !self.accessible_attributes.include?(attr)
-          self.accessible_attributes << attr
-        end
-
         define_method "#{attr}=" do |val|
           self.public_send(to).send('[]=', attr, val)
         end
