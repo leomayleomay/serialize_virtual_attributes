@@ -32,7 +32,13 @@ module SerializeVirtualAttributes
         end
 
         define_method "#{attr}=" do |val|
+          original_val = self.public_send(to).send('[]', attr)
+
           self.public_send(to).send('[]=', attr, val)
+
+          if !self.new_record? && original_val != val
+            self.send("#{to}_will_change!")
+          end
         end
 
         define_method attr do

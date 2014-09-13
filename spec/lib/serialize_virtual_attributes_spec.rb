@@ -87,6 +87,10 @@ describe SerializeVirtualAttributes do
       end
 
       person = Person.create(first_name: "hao", last_name: "liu")
+
+      # 2 attributes changed, will receive this two times
+      expect(person).to receive(:fullname_will_change!).exactly(2).times
+
       person.update_attributes(first_name: "john", last_name: "doe")
       person.reload
 
