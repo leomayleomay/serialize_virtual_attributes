@@ -1,6 +1,8 @@
 # SerializeVirtualAttributes
 
-Dump/Reload the specified virtual attributes into/from serialized column
+Dump/Reload the specified virtual attributes into/from serialized
+column, which is basically doing the same thing with
+http://api.rubyonrails.org/classes/ActiveRecord/Store.html
 
 ## Installation
 
